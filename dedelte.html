@@ -1,25 +1,84 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feminizer - Progressive Feminization Training</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Feminizer - Advanced Progressive Training Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
+    /* ===== CSS VARIABLES & ROOT STYLES ===== */
     :root {
+      /* Primary Theme Colors */
       --primary: #FF6B9D;
       --primary-light: #FFE1EC;
+      --primary-dark: #E55A8C;
       --secondary: #F8F9FA;
+      --accent: #9B59B6;
+      --accent-light: #E8D5F2;
+      
+      /* Text Colors */
       --text: #2D3748;
       --text-light: #718096;
+      --text-muted: #A0AEC0;
+      
+      /* UI Colors */
       --border: #E2E8F0;
       --success: #48BB78;
       --warning: #ED8936;
+      --error: #F56565;
+      --info: #4299E1;
       --background: #FFFFFF;
+      --surface: #F7FAFC;
+      
+      /* Shadows & Effects */
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+      --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
       --radius: 12px;
+      --radius-sm: 6px;
+      --radius-lg: 16px;
+      
+      /* Progress Colors */
+      --feminization: #FF69B4;
+      --obedience: #DC143C;
+      --exposure: #1E90FF;
+      --hypno: #32CD32;
+      
+      /* Transitions */
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Dark Theme Variables */
+    [data-theme="dark"] {
+      --primary: #FF8FB3;
+      --primary-light: #4A1A2E;
+      --secondary: #1A202C;
+      --text: #F7FAFC;
+      --text-light: #CBD5E0;
+      --text-muted: #718096;
+      --border: #2D3748;
+      --background: #2D3748;
+      --surface: #1A202C;
+    }
+
+    /* Chastity Theme */
+    [data-theme="chastity"] {
+      --primary: #8B0000;
+      --primary-light: #FFE4E1;
+      --accent: #DC143C;
+      --accent-light: #FFCCCB;
+    }
+
+    /* Hypno Theme */
+    [data-theme="hypno"] {
+      --primary: #9370DB;
+      --primary-light: #E6E6FA;
+      --accent: #8A2BE2;
+      --accent-light: #DDA0DD;
+    }
+
+    /* ===== BASE STYLES ===== */
     * {
       margin: 0;
       padding: 0;
@@ -32,6 +91,8 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     .container {
@@ -40,31 +101,86 @@
       background: var(--background);
       min-height: 100vh;
       position: relative;
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Header */
+    /* ===== HEADER STYLES ===== */
     .header {
-      background: linear-gradient(135deg, var(--primary), #FF8FB3);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       padding: 20px 24px;
       text-align: center;
       position: sticky;
       top: 0;
       z-index: 100;
+      backdrop-filter: blur(10px);
     }
 
-    .header h1 {
-      font-size: 24px;
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .profile-avatar:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-info h1 {
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 4px;
     }
 
-    .header p {
+    .profile-level {
       font-size: 14px;
       opacity: 0.9;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
     }
 
-    /* Navigation */
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .header-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ===== NAVIGATION STYLES ===== */
     .nav {
       background: var(--background);
       padding: 0 16px;
@@ -73,6 +189,12 @@
       top: 84px;
       z-index: 99;
       overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-tabs {
@@ -83,31 +205,52 @@
 
     .nav-tab {
       flex: 1;
-      padding: 12px 8px;
+      padding: 12px 16px;
       text-align: center;
       color: var(--text-light);
       text-decoration: none;
       font-size: 12px;
       font-weight: 500;
       border-bottom: 2px solid transparent;
-      transition: all 0.2s ease;
+      transition: var(--transition);
       white-space: nowrap;
-      min-width: 70px;
+      min-width: 80px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-tab:hover {
+      color: var(--primary);
+      background: var(--primary-light);
     }
 
     .nav-tab.active {
       color: var(--primary);
       border-bottom-color: var(--primary);
+      background: var(--primary-light);
     }
 
-    /* Content */
+    .nav-tab.has-notification::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--error);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    /* ===== CONTENT STYLES ===== */
     .content {
       padding: 24px;
+      min-height: calc(100vh - 200px);
     }
 
     .section {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.4s ease-out;
     }
 
     .section.active {
@@ -115,16 +258,29 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
     }
 
     .card {
       background: var(--background);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       overflow: hidden;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
     }
 
     .card-header {
@@ -141,9 +297,18 @@
       font-weight: 600;
       margin-bottom: 12px;
       color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Progress bar */
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    /* ===== PROGRESS BAR STYLES ===== */
     .progress-container {
       margin-bottom: 24px;
     }
@@ -158,464 +323,656 @@
     .level-badge {
       background: var(--primary-light);
       color: var(--primary);
-      padding: 4px 12px;
+      padding: 6px 16px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .xp-text {
       font-size: 14px;
       color: var(--text-light);
+      font-weight: 500;
     }
 
     .progress-bar {
-      height: 8px;
+      height: 12px;
       background: var(--border);
-      border-radius: 4px;
+      border-radius: 6px;
       overflow: hidden;
+      position: relative;
     }
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), #FF8FB3);
-      border-radius: 4px;
-      transition: width 0.5s ease;
-    }
-
-    /* Forms */
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 16px;
-      transition: border-color 0.2s ease;
-      background: var(--background);
-    }
-
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      min-height: 48px;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #E55A8C;
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-    }
-
-    .btn-success {
-      background: var(--success);
-      color: white;
-    }
-
-    .btn-full {
-      width: 100%;
-    }
-
-    /* Stats grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .stat-card {
-      background: var(--background);
-      padding: 16px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .stat-number {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-light);
-      margin-top: 4px;
-    }
-
-    /* Task list */
-    .task-list {
-      list-style: none;
-    }
-
-    .task-item {
-      display: flex;
-      align-items: flex-start;
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      gap: 12px;
-    }
-
-    .task-item:last-child {
-      border-bottom: none;
-    }
-
-    .task-checkbox {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border);
-      border-radius: 4px;
-      cursor: pointer;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .task-checkbox.completed {
-      background: var(--success);
-      border-color: var(--success);
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      border-radius: 6px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
 
-    .task-checkbox.completed::after {
-      content: '✓';
+    .progress-fill::after {
+      content: '';
       position: absolute;
-      top: -2px;
-      left: 2px;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
     }
 
-    .task-content {
-      flex: 1;
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
-    .task-title {
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .task-desc {
-      font-size: 14px;
-      color: var(--text-light);
-    }
-
-    .task-points {
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .task-category {
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 600;
-      margin-top: 4px;
-      display: inline-block;
-    }
-
-    /* Messages */
-    .message {
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      font-size: 14px;
-    }
-
-    .message-success {
-      background: #F0FFF4;
-      color: #22543D;
-      border: 1px solid #9AE6B4;
-    }
-
-    .message-error {
-      background: #FFF5F5;
-      color: #742A2A;
-      border: 1px solid #FEB2B2;
-    }
-
-    /* Log area */
-    .log-area {
-      background: var(--secondary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
-      font-size: 13px;
-      max-height: 200px;
-      overflow-y: auto;
-      white-space: pre-line;
-      color: var(--text-light);
-    }
-
-    /* Assessment styles */
-    .assessment-question {
-      margin-bottom: 24px;
-      padding: 20px;
-      background: var(--background);
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .assessment-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .assessment-option {
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .assessment-option:hover {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .assessment-option.selected {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    /* Program selection */
-    .program-grid {
+    /* ===== SISSY PROGRESS STYLES ===== */
+    .sissy-progress {
       display: grid;
       gap: 16px;
       margin-bottom: 24px;
     }
 
-    .program-card {
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+    .progress-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       padding: 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: var(--transition);
     }
 
-    .program-card:hover {
+    .progress-item:hover {
+      background: var(--primary-light);
       border-color: var(--primary);
-      transform: translateY(-2px);
     }
 
-    .program-card.selected {
+    .progress-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .progress-icon.feminization {
+      background: linear-gradient(135deg, var(--feminization), #FF1493);
+      color: white;
+    }
+
+    .progress-icon.obedience {
+      background: linear-gradient(135deg, var(--obedience), #B22222);
+      color: white;
+    }
+
+    .progress-icon.exposure {
+      background: linear-gradient(135deg, var(--exposure), #0066CC);
+      color: white;
+    }
+
+    .progress-icon.hypno {
+      background: linear-gradient(135deg, var(--hypno), #228B22);
+      color: white;
+    }
+
+    .progress-content {
+      flex: 1;
+    }
+
+    .progress-label {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .progress-bar-sissy {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .progress-fill-sissy {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+
+    .progress-fill-sissy.feminization {
+      background: linear-gradient(90deg, var(--feminization), #FF1493);
+    }
+
+    .progress-fill-sissy.obedience {
+      background: linear-gradient(90deg, var(--obedience), #B22222);
+    }
+
+    .progress-fill-sissy.exposure {
+      background: linear-gradient(90deg, var(--exposure), #0066CC);
+    }
+
+    .progress-fill-sissy.hypno {
+      background: linear-gradient(90deg, var(--hypno), #228B22);
+    }
+
+    .progress-percentage {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ===== STATS GRID STYLES ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--background);
+      padding: 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      animation: countUp 1s ease-out;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .stat-icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      opacity: 0.1;
+      font-size: 24px;
+    }
+
+    @keyframes countUp {
+      from { 
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to { 
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ===== DAYS LOCKED STYLES ===== */
+    .days-locked-counter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .counter-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-lg);
+      animation: pulse 2s infinite;
+    }
+
+    .counter-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .counter-label {
+      font-size: 16px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* Calendar Styles */
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text-light);
+      padding: 8px 4px;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      min-height: 32px;
+    }
+
+    .calendar-day:hover {
       border-color: var(--primary);
       background: var(--primary-light);
     }
 
-    .program-title {
-      font-weight: 600;
-      margin-bottom: 8px;
+    .calendar-day.empty {
+      border: none;
+      cursor: default;
     }
 
-    .program-duration {
+    .calendar-day.locked {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+      position: relative;
+    }
+
+    .calendar-day.locked::after {
+      content: '🔒';
+      font-size: 8px;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+    }
+
+    .calendar-day.current {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary-dark);
+      box-shadow: var(--shadow);
+    }
+
+    .calendar-legend {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .legend-color.locked {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .legend-color.current {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+    }
+
+    .legend-label {
+      font-size: 12px;
       color: var(--text-light);
-      font-size: 14px;
-      margin-bottom: 8px;
     }
 
-    .program-desc {
-      font-size: 14px;
-      color: var(--text-light);
-    }
-
-    /* Achievement grid */
+    /* ===== ACHIEVEMENT STYLES ===== */
     .achievement-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
     .achievement-card {
       background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
       padding: 16px;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .achievement-card.unlocked::before {
+      transform: translateX(100%);
     }
 
     .achievement-card.unlocked {
       border-color: var(--success);
-      background: #F0FFF4;
+      background: linear-gradient(135deg, #F0FFF4, #E6FFFA);
+      animation: achievementUnlock 0.6s ease;
+    }
+
+    @keyframes achievementUnlock {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .achievement-icon {
-      font-size: 24px;
+      font-size: 32px;
       margin-bottom: 8px;
+      display: block;
+    }
+
+    .achievement-card.unlocked .achievement-icon {
+      animation: bounce 1s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     .achievement-title {
       font-size: 12px;
       font-weight: 600;
       margin-bottom: 4px;
+      color: var(--text);
     }
 
     .achievement-desc {
       font-size: 10px;
       color: var(--text-light);
+      line-height: 1.3;
     }
 
-    /* Audio player styles */
-    .audio-upload {
-      border: 2px dashed var(--border);
-      border-radius: 8px;
-      padding: 32px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-bottom: 24px;
-    }
-
-    .audio-upload:hover {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .audio-player {
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .play-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: none;
-      background: var(--primary);
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-
-    .audio-progress {
-      flex: 1;
-      height: 6px;
+    .achievement-progress {
+      margin-top: 8px;
+      height: 4px;
       background: var(--border);
-      border-radius: 3px;
+      border-radius: 2px;
       overflow: hidden;
     }
 
-    .audio-progress-fill {
+    .achievement-progress-fill {
+      height: 100%;
+      background: var(--success);
+      transition: width 0.5s ease;
+    }
+
+    /* ===== BUTTON STYLES ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      min-height: 48px;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 14px;
+      min-height: 36px;
+    }
+
+    /* ===== NOTIFICATION STYLES ===== */
+    .notification-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      max-width: 300px;
+    }
+
+    .notification {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-lg);
+      animation: notificationSlide 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes notificationSlide {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .notification::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
       height: 100%;
       background: var(--primary);
-      transition: width 0.1s ease;
     }
 
-    .audio-time {
+    .notification.success::before {
+      background: var(--success);
+    }
+
+    .notification-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .notification-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .notification-close {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .notification-close:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .notification-content {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ===== STATUS BAR STYLES ===== */
+    .status-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--background);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 98;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .status-item:hover {
+      background: var(--surface);
+    }
+
+    .status-icon {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+
+    .status-label {
       font-size: 12px;
       color: var(--text-light);
-      min-width: 40px;
+      font-weight: 500;
     }
 
-    .playlist {
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .playlist-item {
-      padding: 8px 12px;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .playlist-item:hover {
-      background: var(--primary-light);
-    }
-
-    .playlist-item.active {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-
-    /* XP notification */
-    .xp-notification {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--success);
-      color: white;
-      padding: 16px 24px;
-      border-radius: 8px;
+    .status-value {
+      font-size: 12px;
       font-weight: 600;
-      z-index: 1000;
-      opacity: 0;
-      animation: xpPop 1.5s ease;
+      color: var(--text);
     }
 
-    @keyframes xpPop {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: 4px;
     }
 
-    /* Responsive */
+    .status-indicator.active {
+      background: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    .status-indicator.inactive {
+      background: var(--error);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
     @media (max-width: 375px) {
       .content {
         padding: 16px;
@@ -627,52 +984,107 @@
 
       .nav-tab {
         font-size: 11px;
-        padding: 10px 6px;
+        padding: 10px 12px;
+        min-width: 70px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .achievement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-bar {
+        padding: 12px 16px;
+      }
+
+      .status-item {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        min-height: 44px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Header -->
     <header class="header">
-      <h1>Feminizer</h1>
-      <p>Progressive Feminization Training</p>
+      <div class="header-content">
+        <div class="profile-avatar" id="profileAvatar">B</div>
+        <div class="profile-info">
+          <h1 id="profileName">Bonnie</h1>
+          <div class="profile-level" id="profileLevel">Beginner (Level 1)</div>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" id="notificationsBtn" title="Notifications">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button class="header-btn" id="settingsBtn" title="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </div>
     </header>
 
+    <!-- Navigation -->
     <nav class="nav">
       <div class="nav-tabs">
-        <a href="#" class="nav-tab active" data-section="dashboard">Dashboard</a>
-        <a href="#" class="nav-tab" data-section="assessment">Assessment</a>
-        <a href="#" class="nav-tab" data-section="programs">Programs</a>
-        <a href="#" class="nav-tab" data-section="tasks">Tasks</a>
-        <a href="#" class="nav-tab" data-section="hypno">Hypno</a>
-        <a href="#" class="nav-tab" data-section="achievements">Achievements</a>
-        <a href="#" class="nav-tab" data-section="community">Community</a>
+        <a href="#" class="nav-tab active" data-section="dashboard">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="#" class="nav-tab" data-section="dayslocked">
+          <i class="fas fa-lock"></i> Days Locked
+        </a>
+        <a href="#" class="nav-tab" data-section="tasks">
+          <i class="fas fa-tasks"></i> Tasks
+        </a>
+        <a href="#" class="nav-tab" data-section="achievements">
+          <i class="fas fa-trophy"></i> Achievements
+        </a>
+        <a href="#" class="nav-tab" data-section="profile">
+          <i class="fas fa-user"></i> Profile
+        </a>
       </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="content">
       <!-- Dashboard Section -->
       <section id="dashboard" class="section active">
+        <!-- Stats Grid -->
         <div class="stats-grid">
           <div class="stat-card">
+            <i class="fas fa-star stat-icon"></i>
             <div class="stat-number" id="totalXP">0</div>
             <div class="stat-label">Total XP</div>
           </div>
           <div class="stat-card">
+            <i class="fas fa-level-up-alt stat-icon"></i>
             <div class="stat-number" id="currentLevel">1</div>
             <div class="stat-label">Level</div>
           </div>
           <div class="stat-card">
+            <i class="fas fa-check-circle stat-icon"></i>
             <div class="stat-number" id="tasksCompleted">0</div>
-            <div class="stat-label">Tasks</div>
+            <div class="stat-label">Tasks Done</div>
           </div>
           <div class="stat-card">
+            <i class="fas fa-fire stat-icon"></i>
             <div class="stat-number" id="dayStreak">0</div>
             <div class="stat-label">Day Streak</div>
           </div>
         </div>
 
+        <!-- Overall Progress -->
         <div class="card">
           <div class="card-body">
             <div class="progress-container">
@@ -687,58 +1099,235 @@
           </div>
         </div>
 
+        <!-- Sissy Progress -->
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Recent Activity</h2>
+            <h2 class="card-title">
+              <i class="fas fa-chart-line"></i>
+              Progress Overview
+            </h2>
           </div>
           <div class="card-body">
-            <div class="log-area" id="activityLog">No recent activity...</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Assessment Section -->
-      <section id="assessment" class="section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Initial Assessment</h2>
-          </div>
-          <div class="card-body">
-            <p>This assessment will help determine your current skill level and recommend the best training program for you.</p>
-            <div id="assessmentQuestions"></div>
-            <button class="btn btn-primary btn-full" id="submitAssessment" style="display: none;">
-              Complete Assessment
-            </button>
-            <div id="assessmentResults"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Programs Section -->
-      <section id="programs" class="section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Training Programs</h2>
-          </div>
-          <div class="card-body">
-            <div class="program-grid" id="programGrid"></div>
-            <button class="btn btn-primary btn-full" id="selectProgram" style="display: none;">
-              Start Selected Program
-            </button>
-          </div>
-        </div>
-
-        <div class="card" id="currentProgramCard" style="display: none;">
-          <div class="card-header">
-            <h2 class="card-title" id="currentProgramTitle">Current Program</h2>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Current Week</label>
-              <select class="form-select" id="weekSelect"></select>
+            <div class="sissy-progress">
+              <div class="progress-item">
+                <div class="progress-icon feminization">
+                  <i class="fas fa-venus"></i>
+                </div>
+                <div class="progress-content">
+                  <div class="progress-label">Feminization</div>
+                  <div class="progress-bar-sissy">
+                    <div class="progress-fill-sissy feminization" style="width: 0%"></div>
+                  </div>
+                  <div class="progress-percentage">0%</div>
+                </div>
+              </div>
+              
+              <div class="progress-item">
+                <div class="progress-icon obedience">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="progress-content">
+                  <div class="progress-label">Obedience</div>
+                  <div class="progress-bar-sissy">
+                    <div class="progress-fill-sissy obedience" style="width: 0%"></div>
+                  </div>
+                  <div class="progress-percentage">0%</div>
+                </div>
+              </div>
+              
+              <div class="progress-item">
+                <div class="progress-icon exposure">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <div class="progress-content">
+                  <div class="progress-label">Exposure</div>
+                  <div class="progress-bar-sissy">
+                    <div class="progress-fill-sissy exposure" style="width: 0%"></div>
+                  </div>
+                  <div class="progress-percentage">0%</div>
+                </div>
+              </div>
+              
+              <div class="progress-item">
+                <div class="progress-icon hypno">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <div class="progress-content">
+                  <div class="progress-label">Hypno Compliance</div>
+                  <div class="progress-bar-sissy">
+                    <div class="progress-fill-sissy hypno" style="width: 0%"></div>
+                  </div>
+                  <div class="progress-percentage">0%</div>
+                </div>
+              </div>
             </div>
-            <h3 class="card-title" id="weekTitle">Week 1</h3>
-            <ul class="task-list" id="weeklyTasks"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Days Locked Section -->
+      <section id="dayslocked" class="section">
+        <!-- Days Locked Counter Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-lock"></i>
+              Days Locked Counter
+            </h2>
+          </div>
+          <div class="card-body">
+            <!-- Counter Display -->
+            <div class="days-locked-counter">
+              <div class="counter-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <div class="counter-number" id="daysLockedCount">0</div>
+              <div class="counter-label">Days Locked</div>
+            </div>
+            
+            <!-- Current Streak -->
+            <div class="progress-container">
+              <div class="progress-info">
+                <span class="level-badge" id="streakBadge">Current Streak</span>
+                <span class="xp-text" id="streakProgress">0 days</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="streakProgressFill" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Calendar View Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-calendar-alt"></i>
+              Lock Calendar
+            </h2>
+          </div>
+          <div class="card-body">
+            <!-- Month Navigation -->
+            <div class="calendar-nav">
+              <button class="btn btn-sm" id="prevMonth">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h3 id="currentMonth">June 2025</h3>
+              <button class="btn btn-sm" id="nextMonth">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            
+            <!-- Calendar Grid -->
+            <div class="calendar-grid" id="calendarGrid">
+              <!-- Calendar will be populated by JavaScript -->
+            </div>
+            
+            <!-- Calendar Legend -->
+            <div class="calendar-legend">
+              <div class="legend-item">
+                <div class="legend-color locked"></div>
+                <div class="legend-label">Locked</div>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color current"></div>
+                <div class="legend-label">Current Day</div>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color"></div>
+                <div class="legend-label">Unlocked</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Statistics Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-chart-bar"></i>
+              Lock Statistics
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <i class="fas fa-lock stat-icon"></i>
+                <div class="stat-number" id="totalDaysLocked">0</div>
+                <div class="stat-label">Total Days</div>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-fire stat-icon"></i>
+                <div class="stat-number" id="currentStreak">0</div>
+                <div class="stat-label">Current Streak</div>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-trophy stat-icon"></i>
+                <div class="stat-number" id="longestStreak">0</div>
+                <div class="stat-label">Longest Streak</div>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-calendar-check stat-icon"></i>
+                <div class="stat-number" id="lockPercentage">0%</div>
+                <div class="stat-label">Year Locked</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milestones Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-medal"></i>
+              Lock Milestones
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="achievement-grid" id="lockMilestones">
+              <div class="achievement-card" data-milestone="1">
+                <div class="achievement-icon">🔒</div>
+                <div class="achievement-title">First Day</div>
+                <div class="achievement-desc">Locked for 1 day</div>
+              </div>
+              <div class="achievement-card" data-milestone="7">
+                <div class="achievement-icon">🔒</div>
+                <div class="achievement-title">One Week</div>
+                <div class="achievement-desc">Locked for 7 days</div>
+              </div>
+              <div class="achievement-card" data-milestone="30">
+                <div class="achievement-icon">🔒</div>
+                <div class="achievement-title">One Month</div>
+                <div class="achievement-desc">Locked for 30 days</div>
+              </div>
+              <div class="achievement-card" data-milestone="90">
+                <div class="achievement-icon">🔒</div>
+                <div class="achievement-title">Three Months</div>
+                <div class="achievement-desc">Locked for 90 days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lock Controls -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="fas fa-cogs"></i>
+              Lock Controls
+            </h2>
+          </div>
+          <div class="card-body">
+            <div style="text-align: center;">
+              <button class="btn btn-primary" id="startLockBtn" style="margin: 10px;">
+                <i class="fas fa-lock"></i>
+                Start Lock
+              </button>
+              <button class="btn btn-primary" id="endLockBtn" style="margin: 10px; display: none;">
+                <i class="fas fa-unlock"></i>
+                End Lock
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -747,83 +1336,13 @@
       <section id="tasks" class="section">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Submit Task</h2>
+            <h2 class="card-title">
+              <i class="fas fa-tasks"></i>
+              Daily Tasks
+            </h2>
           </div>
           <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Task Category</label>
-              <select class="form-select" id="taskCategory">
-                <option value="General">General</option>
-                <option value="Voice">Voice Training</option>
-                <option value="Style">Style & Fashion</option>
-                <option value="Social">Social Skills</option>
-                <option value="Personal">Personal Care</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Task Description</label>
-              <textarea class="form-textarea" id="taskInput" placeholder="Describe your accomplishment..."></textarea>
-            </div>
-            <button class="btn btn-primary btn-full" id="submitTaskBtn">
-              Submit Task
-            </button>
-            <div id="taskMessage"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Task History</h2>
-          </div>
-          <div class="card-body">
-            <div class="log-area" id="taskLog">No tasks submitted yet...</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Hypno Section -->
-      <section id="hypno" class="section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Local Hypno Files</h2>
-          </div>
-          <div class="card-body">
-            <div class="audio-upload" id="audioUpload">
-              <p>📁 Click or drag audio files here</p>
-              <p style="font-size: 12px; color: var(--text-light);">Supports MP3, WAV, M4A</p>
-              <input type="file" id="audioFileInput" accept="audio/*" multiple style="display: none;">
-            </div>
-            
-            <div class="audio-player" id="audioPlayer" style="display: none;">
-              <div class="audio-controls">
-                <button class="play-btn" id="playBtn">▶</button>
-                <div class="audio-progress" id="audioProgress">
-                  <div class="audio-progress-fill" id="audioProgressFill"></div>
-                </div>
-                <span class="audio-time" id="audioTime">0:00</span>
-              </div>
-              <div id="currentTrack">No track selected</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Session Timer (minutes)</label>
-              <input type="number" class="form-input" id="sessionTimer" min="1" max="120" value="30">
-            </div>
-
-            <button class="btn btn-primary btn-full" id="startSession">
-              Start Timed Session
-            </button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Playlist</h2>
-          </div>
-          <div class="card-body">
-            <div class="playlist" id="playlist">
-              <p>No files uploaded yet...</p>
-            </div>
+            <p>Task management will be implemented here.</p>
           </div>
         </div>
       </section>
@@ -832,1010 +1351,651 @@
       <section id="achievements" class="section">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Achievements</h2>
+            <h2 class="card-title">
+              <i class="fas fa-trophy"></i>
+              Achievements
+            </h2>
           </div>
           <div class="card-body">
-            <div class="achievement-grid" id="achievementGrid"></div>
+            <p>Achievement system will be implemented here.</p>
           </div>
         </div>
       </section>
 
-      <!-- Community Section -->
-      <section id="community" class="section">
+      <!-- Profile Section -->
+      <section id="profile" class="section">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Community Board</h2>
+            <h2 class="card-title">
+              <i class="fas fa-user"></i>
+              Profile Settings
+            </h2>
           </div>
           <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Share Your Experience</label>
-              <textarea class="form-textarea" id="communityInput" placeholder="Share your thoughts, goals, or ask for advice..."></textarea>
-            </div>
-            <button class="btn btn-primary btn-full" id="postCommunityBtn">
-              Post Message
-            </button>
-            <div id="communityMessage"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Community Messages</h2>
-          </div>
-          <div class="card-body">
-            <div class="log-area" id="communityLog">No messages yet...</div>
+            <p>Profile management will be implemented here.</p>
           </div>
         </div>
       </section>
     </main>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-item" id="horninessStatus">
+        <i class="fas fa-fire status-icon"></i>
+        <div>
+          <div class="status-label">Horniness</div>
+          <div class="status-value">Low</div>
+        </div>
+      </div>
+      <div class="status-item" id="chastityStatus">
+        <i class="fas fa-lock status-icon"></i>
+        <div>
+          <div class="status-label">Chastity</div>
+          <div class="status-value">Off <span class="status-indicator inactive"></span></div>
+        </div>
+      </div>
+      <div class="status-item" id="plugStatus">
+        <i class="fas fa-circle status-icon"></i>
+        <div>
+          <div class="status-label">Plug</div>
+          <div class="status-value">Out <span class="status-indicator inactive"></span></div>
+        </div>
+      </div>
+      <div class="status-item" id="alertsStatus">
+        <i class="fas fa-bell status-icon"></i>
+        <div>
+          <div class="status-label">Alerts</div>
+          <div class="status-value">0</div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Notification Container -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <!-- JavaScript -->
   <script>
-    // Application state
+    // ===== APPLICATION STATE =====
     let appState = {
-      currentWeek: 1,
-      currentProgram: null,
-      completedTasks: new Set(),
-      xp: 0,
-      level: 0,
-      tasksSubmitted: 0,
-      dayStreak: 0,
-      assessmentCompleted: false,
-      assessmentScore: 0,
-      unlockedAchievements: new Set(),
-      audioFiles: [],
-      currentTrack: null,
-      isPlaying: false
+      // User Profile
+      profile: {
+        name: 'Bonnie',
+        avatar: 'B',
+        level: 1,
+        title: 'Beginner',
+        bio: 'Starting my transformation journey! 💕',
+        joinDate: new Date(),
+        isPublic: true,
+        showProgress: true,
+        allowMessages: false
+      },
+
+      // Progress Data
+      progress: {
+        xp: 0,
+        totalXP: 0,
+        level: 1,
+        nextLevelXP: 100,
+        feminization: 0,
+        obedience: 0,
+        exposure: 0,
+        hypnoCompliance: 0
+      },
+
+      // Statistics
+      stats: {
+        tasksCompleted: 0,
+        dayStreak: 0,
+        totalSessions: 0,
+        totalHours: 0,
+        completionRate: 0,
+        achievementsUnlocked: 0
+      },
+
+      // Days Locked State
+      daysLocked: {
+        isLocked: false,
+        startDate: null,
+        endDate: null,
+        currentStreak: 0,
+        longestStreak: 0,
+        totalDaysLocked: 0,
+        lockedDays: new Set(),
+        milestones: {
+          1: false,
+          7: false,
+          30: false,
+          90: false
+        }
+      },
+
+      // Tasks
+      tasks: {
+        daily: [],
+        completed: new Set(),
+        pending: [],
+        overdue: []
+      },
+
+      // Achievements
+      achievements: {
+        unlocked: new Set(),
+        progress: new Map()
+      },
+
+      // Settings
+      settings: {
+        theme: 'default',
+        animations: true,
+        soundEffects: false,
+        vibrations: false,
+        notifications: {
+          daily: true,
+          achievements: true,
+          community: false,
+          progress: true,
+          time: '20:00'
+        }
+      }
     };
 
-    // Levels and XP requirements
-    const levels = [
-      { name: "Beginner", xp: 0 },
-      { name: "Novice", xp: 100 },
-      { name: "Intermediate", xp: 300 },
-      { name: "Advanced", xp: 600 },
-      { name: "Expert", xp: 1000 }
-    ];
+    // ===== LEVEL SYSTEM =====
+    const levelSystem = {
+      levels: [
+        { name: "Curious", xp: 0, title: "Beginner" },
+        { name: "Exploring", xp: 100, title: "Explorer" },
+        { name: "Committed", xp: 300, title: "Committed" },
+        { name: "Devoted", xp: 600, title: "Devoted" },
+        { name: "Sissy", xp: 1000, title: "True Sissy" },
+        { name: "Slut", xp: 1500, title: "Sissy Slut" },
+        { name: "Whore", xp: 2000, title: "Sissy Whore" },
+        { name: "BIMBO", xp: 2500, title: "Real BIMBO" },
+        { name: "GODDESS", xp: 3000, title: "Sissy Goddess" }
+      ],
 
-    // Training programs
-    const trainingPrograms = {
-      basic: {
-        name: "Basic Feminization",
-        duration: "8 weeks",
-        description: "Comprehensive foundation program covering all aspects of feminization",
-        weeks: {
-          1: {
-            title: "Week 1: Basic Care & Hygiene",
-            tasks: [
-              { id: 1, title: "Facial care routine", desc: "Cleanse, tone, moisturize morning and evening", points: 10, category: "Personal" },
-              { id: 2, title: "Leg hair removal", desc: "Complete shaving or waxing", points: 15, category: "Personal" },
-              { id: 3, title: "Basic manicure", desc: "Trim, file and moisturize nails", points: 10, category: "Style" },
-              { id: 4, title: "Relaxing bath", desc: "30 minutes with essential oils", points: 10, category: "Personal" },
-              { id: 5, title: "Body moisturizing", desc: "Full body moisturizer application", points: 5, category: "Personal" },
-              { id: 6, title: "Hair care", desc: "Shampoo, conditioner, hair mask", points: 10, category: "Style" },
-              { id: 7, title: "Body exfoliation", desc: "Full body scrub 2x this week", points: 10, category: "Personal" }
-            ]
-          },
-          2: {
-            title: "Week 2: Voice Training",
-            tasks: [
-              { id: 8, title: "Breathing exercises", desc: "10 min diaphragmatic breathing", points: 10, category: "Voice" },
-              { id: 9, title: "Resonance work", desc: "Whisper scream exercise 5 min", points: 15, category: "Voice" },
-              { id: 10, title: "Voice pitch", desc: "Practice and memorize new pitch", points: 15, category: "Voice" },
-              { id: 11, title: "Reading aloud", desc: "15 min with feminine voice", points: 10, category: "Voice" },
-              { id: 12, title: "Voice recording", desc: "Record and analyze progress", points: 10, category: "Voice" },
-              { id: 13, title: "Phone conversation", desc: "5 min call with practiced voice", points: 20, category: "Social" },
-              { id: 14, title: "Articulation exercises", desc: "Tongue twisters and diction", points: 10, category: "Voice" }
-            ]
-          },
-          3: {
-            title: "Week 3: Beginner Makeup",
-            tasks: [
-              { id: 15, title: "Foundation base", desc: "Learn to apply foundation properly", points: 15, category: "Style" },
-              { id: 16, title: "Under-eye concealer", desc: "Use concealer and color corrector", points: 10, category: "Style" },
-              { id: 17, title: "Feminine eyebrows", desc: "Pluck and reshape eyebrows", points: 15, category: "Style" },
-              { id: 18, title: "Basic mascara", desc: "Clean mascara application", points: 10, category: "Style" },
-              { id: 19, title: "Lipstick", desc: "Choose and apply suitable color", points: 10, category: "Style" },
-              { id: 20, title: "Natural blush", desc: "Subtle blush application", points: 10, category: "Style" },
-              { id: 21, title: "Complete look", desc: "Full daytime makeup look", points: 20, category: "Style" }
-            ]
-          },
-          4: {
-            title: "Week 4: Feminine Wardrobe",
-            tasks: [
-              { id: 22, title: "Wardrobe audit", desc: "Evaluate and organize clothing", points: 10, category: "Style" },
-              { id: 23, title: "Feminine underwear", desc: "Wear bra and panties for 3 days", points: 15, category: "Style" },
-              { id: 24, title: "Casual feminine outfit", desc: "Create relaxed feminine look", points: 15, category: "Style" },
-              { id: 25, title: "Dress or skirt", desc: "Wear dress or skirt for 2 hours", points: 20, category: "Style" },
-              { id: 26, title: "Accessories", desc: "Choose jewelry, bag, scarf", points: 10, category: "Style" },
-              { id: 27, title: "Feminine shoes", desc: "Walk 30 min in heeled shoes", points: 15, category: "Style" },
-              { id: 28, title: "Color coordination", desc: "Create 3 harmonious outfits", points: 15, category: "Style" }
-            ]
-          },
-          5: {
-            title: "Week 5: Posture & Movement",
-            tasks: [
-              { id: 29, title: "Sitting posture", desc: "Sit with crossed legs, straight back", points: 10, category: "Social" },
-              { id: 30, title: "Feminine walk", desc: "Practice walking 20 min daily", points: 15, category: "Social" },
-              { id: 31, title: "Hand gestures", desc: "Graceful and delicate movements", points: 10, category: "Social" },
-              { id: 32, title: "Head carriage", desc: "Neck and head positioning", points: 10, category: "Social" },
-              { id: 33, title: "Room entrance", desc: "Practice graceful entrances", points: 15, category: "Social" },
-              { id: 34, title: "Standing position", desc: "Align hips, feet, shoulders", points: 10, category: "Social" },
-              { id: 35, title: "Fluid movements", desc: "Coordination and natural grace", points: 15, category: "Social" }
-            ]
-          },
-          6: {
-            title: "Week 6: Feminine Communication",
-            tasks: [
-              { id: 36, title: "Body language", desc: "Soft facial expressions", points: 10, category: "Social" },
-              { id: 37, title: "Active listening", desc: "Practice empathetic listening", points: 10, category: "Social" },
-              { id: 38, title: "Social conversation", desc: "30 min exchange with feminine approach", points: 20, category: "Social" },
-              { id: 39, title: "Emotional expression", desc: "Share feelings openly", points: 15, category: "Social" },
-              { id: 40, title: "Compliments", desc: "Give 5 sincere compliments", points: 10, category: "Social" },
-              { id: 41, title: "Voice tone", desc: "Feminine modulation and intonation", points: 15, category: "Voice" },
-              { id: 42, title: "Vocabulary", desc: "Use more feminine expressions", points: 10, category: "Social" }
-            ]
-          },
-          7: {
-            title: "Week 7: Confidence & Self-Expression",
-            tasks: [
-              { id: 43, title: "Positive affirmations", desc: "10 affirmations morning and evening", points: 10, category: "Personal" },
-              { id: 44, title: "Personal journal", desc: "Write daily feelings", points: 10, category: "Personal" },
-              { id: 45, title: "Public outing", desc: "2 hours in feminine presentation", points: 25, category: "Social" },
-              { id: 46, title: "Progress photo", desc: "Selfie with makeup and outfit", points: 15, category: "Personal" },
-              { id: 47, title: "Meditation", desc: "15 min identity meditation", points: 10, category: "Personal" },
-              { id: 48, title: "Self-acceptance", desc: "Practice self-compassion", points: 15, category: "Personal" },
-              { id: 49, title: "Creative expression", desc: "Art, dance, or creative writing", points: 15, category: "Personal" }
-            ]
-          },
-          8: {
-            title: "Week 8: Integration & Maintenance",
-            tasks: [
-              { id: 50, title: "Morning routine", desc: "Complete feminized routine", points: 20, category: "Personal" },
-              { id: 51, title: "Social interaction", desc: "3+ hour social meeting", points: 25, category: "Social" },
-              { id: 52, title: "Global evaluation", desc: "Complete 8-week assessment", points: 15, category: "General" },
-              { id: 53, title: "Future planning", desc: "Define future goals", points: 15, category: "General" },
-              { id: 54, title: "Celebration", desc: "Moment of pride and recognition", points: 20, category: "Personal" },
-              { id: 55, title: "Experience sharing", desc: "Share your journey", points: 15, category: "Social" },
-              { id: 56, title: "Daily maintenance", desc: "integrate learnings into routine", points: 20, category: "General" }
-            ]
+      getCurrentLevel(xp) {
+        for (let i = this.levels.length - 1; i >= 0; i--) {
+          if (xp >= this.levels[i].xp) {
+            return { ...this.levels[i], index: i };
           }
         }
+        return { ...this.levels[0], index: 0 };
       },
-      advanced: {
-        name: "Advanced Feminization",
-        duration: "12 weeks",
-        description: "Advanced techniques for experienced practitioners seeking deeper transformation",
-        weeks: {
-          1: { title: "Advanced Skincare Regimen", tasks: [
-            { id: 101, title: "Multi-step skincare", desc: "Advanced 7-step routine with serums", points: 20, category: "Personal" },
-            { id: 102, title: "Professional treatments", desc: "Facial or dermatologist visit", points: 25, category: "Personal" }
-          ]},
-          2: { title: "Advanced Makeup Techniques", tasks: [
-            { id: 103, title: "Contouring mastery", desc: "Advanced face sculpting techniques", points: 25, category: "Style" },
-            { id: 104, title: "Eye makeup artistry", desc: "Complex eyeshadow and liner techniques", points: 30, category: "Style" }
-          ]}
-        }
-      },
-      voice: {
-        name: "Voice Training Focus",
-        duration: "6 weeks",
-        description: "Intensive voice feminization specialization program",
-        weeks: {
-          1: { title: "Voice Fundamentals", tasks: [
-            { id: 201, title: "Vocal anatomy study", desc: "Understand voice production mechanics", points: 15, category: "Voice" },
-            { id: 202, title: "Baseline recording", desc: "Record current voice for comparison", points: 10, category: "Voice" }
-          ]},
-          2: { title: "Resonance Training", tasks: [
-            { id: 203, title: "Head resonance", desc: "Practice head voice techniques", points: 20, category: "Voice" },
-            { id: 204, title: "Mixed voice", desc: "Blend chest and head resonance", points: 25, category: "Voice" }
-          ]}
-        }
-      },
-      social: {
-        name: "Social Transition",
-        duration: "10 weeks",
-        description: "Focus on social skills and public presentation confidence",
-        weeks: {
-          1: { title: "Social Awareness", tasks: [
-            { id: 301, title: "Social observation", desc: "Study feminine social behaviors", points: 15, category: "Social" },
-            { id: 302, title: "Confidence building", desc: "Daily affirmation practice", points: 10, category: "Personal" }
-          ]},
-          2: { title: "Public Presentation", tasks: [
-            { id: 303, title: "Public speaking", desc: "Practice feminine speech patterns", points: 25, category: "Social" },
-            { id: 304, title: "Social situations", desc: "Navigate social interactions", points: 20, category: "Social" }
-          ]}
-        }
-      },
-      fashion: {
-        name: "Style & Fashion",
-        duration: "8 weeks",
-        description: "Develop feminine style and fashion sense",
-        weeks: {
-          1: { title: "Style Foundation", tasks: [
-            { id: 401, title: "Style analysis", desc: "Determine personal style preferences", points: 15, category: "Style" },
-            { id: 402, title: "Color palette", desc: "Find your best colors", points: 20, category: "Style" }
-          ]},
-          2: { title: "Wardrobe Building", tasks: [
-            { id: 403, title: "Essential pieces", desc: "Build capsule wardrobe", points: 25, category: "Style" },
-            { id: 404, title: "Accessory coordination", desc: "Master accessory pairing", points: 20, category: "Style" }
-          ]}
-        }
+
+      getNextLevel(currentIndex) {
+        return currentIndex < this.levels.length - 1 ? this.levels[currentIndex + 1] : null;
       }
     };
 
-    // Assessment questions
-    const assessmentQuestions = [
-      {
-        id: 1,
-        question: "How comfortable are you with makeup application?",
-        options: [
-          { text: "Complete beginner", value: 1 },
-          { text: "Basic knowledge", value: 2 },
-          { text: "Some experience", value: 3 },
-          { text: "Quite skilled", value: 4 },
-          { text: "Expert level", value: 5 }
-        ]
-      },
-      {
-        id: 2,
-        question: "How would you rate your current voice feminization skills?",
-        options: [
-          { text: "No experience", value: 1 },
-          { text: "Beginner", value: 2 },
-          { text: "Some practice", value: 3 },
-          { text: "Confident", value: 4 },
-          { text: "Very skilled", value: 5 }
-        ]
-      },
-      {
-        id: 3,
-        question: "How familiar are you with feminine fashion and styling?",
-        options: [
-          { text: "Not familiar at all", value: 1 },
-          { text: "Basic understanding", value: 2 },
-          { text: "Moderate knowledge", value: 3 },
-          { text: "Good knowledge", value: 4 },
-          { text: "Fashion expert", value: 5 }
-        ]
-      },
-      {
-        id: 4,
-        question: "How comfortable are you in social situations presenting femininely?",
-        options: [
-          { text: "Very uncomfortable", value: 1 },
-          { text: "Somewhat uncomfortable", value: 2 },
-          { text: "Neutral", value: 3 },
-          { text: "Comfortable", value: 4 },
-          { text: "Very confident", value: 5 }
-        ]
-      },
-      {
-        id: 5,
-        question: "What is your primary focus area?",
-        options: [
-          { text: "Overall feminization", value: "basic" },
-          { text: "Voice training", value: "voice" },
-          { text: "Style and fashion", value: "fashion" },
-          { text: "Social confidence", value: "social" },
-          { text: "Advanced techniques", value: "advanced" }
-        ]
-      }
-    ];
+    // ===== CALENDAR STATE =====
+    let calendarState = {
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth()
+    };
 
-    // Achievements system
-    const achievements = [
-      { id: 'first_step', title: 'First Step', desc: 'Complete your first task', icon: '👶', unlocked: false },
-      { id: 'level_up', title: 'Level Up', desc: 'Reach level 2', icon: '📈', unlocked: false },
-      { id: 'task_master', title: 'Task Master', desc: 'Complete 10 tasks', icon: '✅', unlocked: false },
-      { id: 'dedicated', title: 'Dedicated', desc: '7 day streak', icon: '🔥', unlocked: false },
-      { id: 'voice_trainer', title: 'Voice Trainer', desc: 'Complete 5 voice tasks', icon: '🎤', unlocked: false },
-      { id: 'style_icon', title: 'Style Icon', desc: 'Complete 5 style tasks', icon: '👗', unlocked: false },
-      { id: 'social_butterfly', title: 'Social Butterfly', desc: 'Complete 5 social tasks', icon: '🦋', unlocked: false },
-      { id: 'week_warrior', title: 'Week Warrior', desc: 'Complete a full week', icon: '🏆', unlocked: false },
-      { id: 'assessment_ace', title: 'Assessment Ace', desc: 'Complete initial assessment', icon: '📝', unlocked: false },
-      { id: 'hypno_explorer', title: 'Hypno Explorer', desc: 'Upload first audio file', icon: '🎧', unlocked: false },
-      { id: 'community_member', title: 'Community Member', desc: 'Post first message', icon: '💬', unlocked: false },
-      { id: 'consistent', title: 'Consistent', desc: '30 days of activity', icon: '📅', unlocked: false },
-      { id: 'expert_level', title: 'Expert Level', desc: 'Reach expert level', icon: '🌟', unlocked: false },
-      { id: 'makeup_artist', title: 'Makeup Artist', desc: 'Master makeup techniques', icon: '💄', unlocked: false },
-      { id: 'confidence_queen', title: 'Confidence Queen', desc: 'Complete social challenges', icon: '👑', unlocked: false },
-      { id: 'transformation', title: 'Transformation', desc: 'Complete full program', icon: '🦋', unlocked: false },
-      { id: 'mentor', title: 'Mentor', desc: 'Help others in community', icon: '🤝', unlocked: false },
-      { id: 'perfectionist', title: 'Perfectionist', desc: '100% task completion rate', icon: '💯', unlocked: false },
-      { id: 'trendsetter', title: 'Trendsetter', desc: 'Create unique style', icon: '✨', unlocked: false },
-      { id: 'champion', title: 'Champion', desc: 'Achieve all goals', icon: '🏅', unlocked: false }
-    ];
-
-    // Utility functions
+    // ===== UTILITY FUNCTIONS =====
     function saveData(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+      } catch (error) {
+        console.error('Error saving data:', error);
+        return false;
+      }
     }
 
     function loadData(key, defaultValue) {
-      const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : defaultValue;
+      try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : defaultValue;
+      } catch (error) {
+        console.error('Error loading data:', error);
+        return defaultValue;
+      }
     }
 
     function showSection(sectionId) {
+      // Update URL hash
+      if (history.pushState) {
+        history.pushState(null, null, '#' + sectionId);
+      } else {
+        window.location.hash = sectionId;
+      }
+
+      // Hide all sections and deactivate all tabs
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       
-      document.getElementById(sectionId).classList.add('active');
-      document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+      // Show target section and activate corresponding tab
+      const targetSection = document.getElementById(sectionId);
+      const targetTab = document.querySelector(`[data-section="${sectionId}"]`);
+      
+      if (targetSection && targetTab) {
+        targetSection.classList.add('active');
+        targetTab.classList.add('active');
+        
+        // Trigger section-specific updates
+        switch(sectionId) {
+          case 'dashboard':
+            updateDashboard();
+            break;
+          case 'dayslocked':
+            updateDaysLockedTab();
+            break;
+          case 'tasks':
+            updateTasks();
+            break;
+          case 'achievements':
+            updateAchievements();
+            break;
+          case 'profile':
+            updateProfile();
+            break;
+        }
+      }
     }
 
-    function showMessage(containerId, message, type = 'success') {
-      const container = document.getElementById(containerId);
-      container.innerHTML = `<div class="message message-${type}">${message}</div>`;
-      setTimeout(() => container.innerHTML = '', 3000);
-    }
-
-    function showXPNotification(xp) {
+    function showNotification(options) {
+      const container = document.getElementById('notificationContainer');
       const notification = document.createElement('div');
-      notification.className = 'xp-notification';
-      notification.textContent = `+${xp} XP`;
-      document.body.appendChild(notification);
-      setTimeout(() => notification.remove(), 1500);
+      
+      notification.className = `notification ${options.type || 'info'}`;
+      notification.innerHTML = `
+        <div class="notification-header">
+          <div class="notification-title">${options.title || 'Notification'}</div>
+          <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="notification-content">${options.message}</div>
+      `;
+      
+      container.appendChild(notification);
+      
+      // Auto remove after duration
+      if (options.duration) {
+        setTimeout(() => {
+          if (notification.parentElement) {
+            notification.remove();
+          }
+        }, options.duration);
+      }
+    }
+
+    function addXP(amount, reason = '') {
+      const oldLevel = levelSystem.getCurrentLevel(appState.progress.xp);
+      appState.progress.xp += amount;
+      appState.progress.totalXP += amount;
+      
+      const newLevel = levelSystem.getCurrentLevel(appState.progress.xp);
+      
+      // Check for level up
+      if (newLevel.index > oldLevel.index) {
+        appState.progress.level = newLevel.index + 1;
+        showNotification({
+          title: 'Level Up!',
+          message: `Congratulations! You've reached ${newLevel.title} (Level ${newLevel.index + 1})`,
+          type: 'success',
+          duration: 8000
+        });
+      }
+      
+      // Update UI
+      updateStats();
+      updateProgress();
+      
+      // Save state
+      saveAppState();
     }
 
     function updateStats() {
-      document.getElementById('totalXP').textContent = appState.xp;
-      document.getElementById('currentLevel').textContent = appState.level + 1;
-      document.getElementById('tasksCompleted').textContent = appState.completedTasks.size;
-      document.getElementById('dayStreak').textContent = appState.dayStreak;
+      // Update stat displays
+      document.getElementById('totalXP').textContent = appState.progress.totalXP.toLocaleString();
+      document.getElementById('currentLevel').textContent = appState.progress.level;
+      document.getElementById('tasksCompleted').textContent = appState.stats.tasksCompleted;
+      document.getElementById('dayStreak').textContent = appState.stats.dayStreak;
+      
+      // Update profile level display
+      const currentLevel = levelSystem.getCurrentLevel(appState.progress.xp);
+      document.getElementById('profileLevel').textContent = `${currentLevel.title} (Level ${currentLevel.index + 1})`;
+    }
 
-      const currentLevelData = levels[appState.level];
-      const nextLevelData = levels[appState.level + 1];
+    function updateProgress() {
+      const currentLevel = levelSystem.getCurrentLevel(appState.progress.xp);
+      const nextLevel = levelSystem.getNextLevel(currentLevel.index);
       
-      document.getElementById('levelBadge').textContent = currentLevelData.name;
+      document.getElementById('levelBadge').textContent = currentLevel.title;
       
-      if (nextLevelData) {
-        const progress = ((appState.xp - currentLevelData.xp) / (nextLevelData.xp - currentLevelData.xp)) * 100;
+      if (nextLevel) {
+        const progress = ((appState.progress.xp - currentLevel.xp) / (nextLevel.xp - currentLevel.xp)) * 100;
         document.getElementById('progressFill').style.width = Math.min(progress, 100) + '%';
-        document.getElementById('xpProgress').textContent = `${appState.xp} / ${nextLevelData.xp} XP`;
+        document.getElementById('xpProgress').textContent = `${appState.progress.xp} / ${nextLevel.xp} XP`;
       } else {
         document.getElementById('progressFill').style.width = '100%';
         document.getElementById('xpProgress').textContent = 'Maximum level reached';
       }
       
-      updateActivityLog();
+      // Update sissy progress bars
+      document.querySelector('.progress-fill-sissy.feminization').style.width = appState.progress.feminization + '%';
+      document.querySelector('.progress-fill-sissy.obedience').style.width = appState.progress.obedience + '%';
+      document.querySelector('.progress-fill-sissy.exposure').style.width = appState.progress.exposure + '%';
+      document.querySelector('.progress-fill-sissy.hypno').style.width = appState.progress.hypnoCompliance + '%';
+      
+      // Update percentage displays
+      document.querySelectorAll('.progress-percentage')[0].textContent = appState.progress.feminization + '%';
+      document.querySelectorAll('.progress-percentage')[1].textContent = appState.progress.obedience + '%';
+      document.querySelectorAll('.progress-percentage')[2].textContent = appState.progress.exposure + '%';
+      document.querySelectorAll('.progress-percentage')[3].textContent = appState.progress.hypnoCompliance + '%';
     }
 
-    function updateActivityLog() {
-      const activities = loadData('activities', []);
-      const log = document.getElementById('activityLog');
-      
-      if (activities.length === 0) {
-        log.textContent = 'No recent activity...';
+    function updateDashboard() {
+      updateStats();
+      updateProgress();
+    }
+
+    // ===== DAYS LOCKED FUNCTIONS =====
+    function updateDaysLockedTab() {
+      calculateDaysLocked();
+      updateDaysLockedCounter();
+      renderCalendar();
+      updateLockStatistics();
+      updateLockMilestones();
+    }
+
+    function calculateDaysLocked() {
+      if (!appState.daysLocked.isLocked || !appState.daysLocked.startDate) {
         return;
       }
 
-      log.textContent = activities.slice(-5).reverse().map(activity => 
-        `${activity.type}: ${activity.description}\n📅 ${activity.date}`
-      ).join('\n\n');
+      const startDate = new Date(appState.daysLocked.startDate);
+      const endDate = appState.daysLocked.endDate ? new Date(appState.daysLocked.endDate) : new Date();
+      
+      // Calculate total days locked
+      const diffTime = Math.abs(endDate - startDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      appState.daysLocked.totalDaysLocked = diffDays;
+      appState.daysLocked.currentStreak = appState.daysLocked.isLocked ? diffDays : 0;
+      
+      // Generate set of all locked days
+      appState.daysLocked.lockedDays = new Set();
+      let currentDate = new Date(startDate);
+      
+      while (currentDate <= endDate) {
+        appState.daysLocked.lockedDays.add(currentDate.toISOString().split('T')[0]);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      
+      // Check milestones
+      appState.daysLocked.milestones[1] = diffDays >= 1;
+      appState.daysLocked.milestones[7] = diffDays >= 7;
+      appState.daysLocked.milestones[30] = diffDays >= 30;
+      appState.daysLocked.milestones[90] = diffDays >= 90;
     }
 
-    function addActivity(type, description) {
-      const activities = loadData('activities', []);
-      activities.push({
-        type,
-        description,
-        date: new Date().toLocaleString()
+    function updateDaysLockedCounter() {
+      document.getElementById('daysLockedCount').textContent = appState.daysLocked.totalDaysLocked;
+      document.getElementById('streakProgress').textContent = `${appState.daysLocked.totalDaysLocked} days`;
+      
+      // Update progress bar (assuming 100 days is 100%)
+      const progressPercentage = Math.min(appState.daysLocked.totalDaysLocked / 100 * 100, 100);
+      document.getElementById('streakProgressFill').style.width = `${progressPercentage}%`;
+    }
+
+    function renderCalendar() {
+      const year = calendarState.currentYear;
+      const month = calendarState.currentMonth;
+      
+      const date = new Date(year, month, 1);
+      const monthName = date.toLocaleString('default', { month: 'long' });
+      
+      document.getElementById('currentMonth').textContent = `${monthName} ${year}`;
+      
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDay = firstDay.getDay();
+      
+      const calendarGrid = document.getElementById('calendarGrid');
+      calendarGrid.innerHTML = '';
+      
+      // Add weekday headers
+      const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      weekdays.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-day-header';
+        dayHeader.textContent = day;
+        calendarGrid.appendChild(dayHeader);
       });
-      saveData('activities', activities);
-    }
-
-    function checkAchievements() {
-      const previouslyUnlocked = new Set(appState.unlockedAchievements);
       
-      // Check various achievement conditions
-      if (appState.completedTasks.size >= 1 && !appState.unlockedAchievements.has('first_step')) {
-        unlockAchievement('first_step');
+      // Add empty cells for days before the month starts
+      const startingDayAdjusted = startingDay === 0 ? 6 : startingDay - 1;
+      for (let i = 0; i < startingDayAdjusted; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day empty';
+        calendarGrid.appendChild(emptyDay);
       }
       
-      if (appState.level >= 1 && !appState.unlockedAchievements.has('level_up')) {
-        unlockAchievement('level_up');
-      }
-      
-      if (appState.completedTasks.size >= 10 && !appState.unlockedAchievements.has('task_master')) {
-        unlockAchievement('task_master');
-      }
-      
-      if (appState.assessmentCompleted && !appState.unlockedAchievements.has('assessment_ace')) {
-        unlockAchievement('assessment_ace');
-      }
-      
-      // Check for newly unlocked achievements
-      appState.unlockedAchievements.forEach(id => {
-        if (!previouslyUnlocked.has(id)) {
-          addActivity('Achievement', `Unlocked: ${achievements.find(a => a.id === id).title}`);
-          showXPNotification(50); // Bonus XP for achievements
-          appState.xp += 50;
+      // Add days of the month
+      const today = new Date();
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.textContent = day;
+        
+        const dayDate = new Date(year, month, day);
+        const dayString = dayDate.toISOString().split('T')[0];
+        
+        // Check if this day is locked
+        if (appState.daysLocked.lockedDays.has(dayString)) {
+          dayElement.classList.add('locked');
         }
-      });
-    }
-
-    function unlockAchievement(achievementId) {
-      appState.unlockedAchievements.add(achievementId);
-      const achievement = achievements.find(a => a.id === achievementId);
-      if (achievement) {
-        achievement.unlocked = true;
+        
+        // Check if this is today
+        if (dayDate.toDateString() === today.toDateString()) {
+          dayElement.classList.add('current');
+        }
+        
+        calendarGrid.appendChild(dayElement);
       }
-      saveData('appState', appState);
-      renderAchievements();
     }
 
-    function renderAchievements() {
-      const grid = document.getElementById('achievementGrid');
-      grid.innerHTML = achievements.map(achievement => `
-        <div class="achievement-card ${achievement.unlocked ? 'unlocked' : ''}">
-          <div class="achievement-icon">${achievement.unlocked ? achievement.icon : '🔒'}</div>
-          <div class="achievement-title">${achievement.title}</div>
-          <div class="achievement-desc">${achievement.desc}</div>
-        </div>
-      `).join('');
-    }
-
-    // Assessment functions
-    function renderAssessment() {
-      const container = document.getElementById('assessmentQuestions');
-      container.innerHTML = assessmentQuestions.map(q => `
-        <div class="assessment-question" data-question-id="${q.id}">
-          <h4>${q.question}</h4>
-          <div class="assessment-options">
-            ${q.options.map((option, index) => `
-              <div class="assessment-option" data-value="${option.value}">
-                ${option.text}
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `).join('');
-
-      // Add click handlers for options
-      container.addEventListener('click', (e) => {
-        if (e.target.classList.contains('assessment-option')) {
-          // Remove selected class from siblings
-          e.target.parentNode.querySelectorAll('.assessment-option').forEach(opt => 
-            opt.classList.remove('selected'));
-          // Add selected class to clicked option
-          e.target.classList.add('selected');
-          
-          // Check if all questions are answered
-          const answeredQuestions = container.querySelectorAll('.assessment-option.selected').length;
-          if (answeredQuestions === assessmentQuestions.length) {
-            document.getElementById('submitAssessment').style.display = 'block';
-          }
-        }
-      });
-    }
-
-    function submitAssessment() {
-      const answers = {};
-      document.querySelectorAll('.assessment-question').forEach(questionEl => {
-        const questionId = questionEl.dataset.questionId;
-        const selectedOption = questionEl.querySelector('.assessment-option.selected');
-        if (selectedOption) {
-          answers[questionId] = selectedOption.dataset.value;
-        }
-      });
-
-      // Calculate score and recommendations
-      let totalScore = 0;
-      let focusArea = 'basic';
+    function changeMonth(delta) {
+      calendarState.currentMonth += delta;
       
-      Object.values(answers).forEach(answer => {
-        if (typeof answer === 'string') {
-          focusArea = answer;
+      if (calendarState.currentMonth > 11) {
+        calendarState.currentMonth = 0;
+        calendarState.currentYear++;
+      } else if (calendarState.currentMonth < 0) {
+        calendarState.currentMonth = 11;
+        calendarState.currentYear--;
+      }
+      
+      renderCalendar();
+    }
+
+    function updateLockStatistics() {
+      document.getElementById('totalDaysLocked').textContent = appState.daysLocked.totalDaysLocked;
+      document.getElementById('currentStreak').textContent = appState.daysLocked.currentStreak;
+      document.getElementById('longestStreak').textContent = appState.daysLocked.longestStreak;
+      
+      // Calculate percentage of year locked
+      const daysInYear = 365;
+      const percentLocked = Math.round((appState.daysLocked.totalDaysLocked / daysInYear) * 100);
+      document.getElementById('lockPercentage').textContent = `${percentLocked}%`;
+    }
+
+    function updateLockMilestones() {
+      const milestoneCards = document.querySelectorAll('#lockMilestones .achievement-card');
+      
+      milestoneCards.forEach(card => {
+        const milestone = parseInt(card.dataset.milestone);
+        if (appState.daysLocked.milestones[milestone]) {
+          card.classList.add('unlocked');
         } else {
-          totalScore += parseInt(answer);
-        }
-      });
-
-      appState.assessmentCompleted = true;
-      appState.assessmentScore = totalScore;
-      
-      // Show results
-      const results = document.getElementById('assessmentResults');
-      let level = 'Beginner';
-      let recommendation = trainingPrograms.basic.name;
-
-      if (totalScore >= 16) {
-        level = 'Advanced';
-        recommendation = trainingPrograms.advanced.name;
-      } else if (totalScore >= 12) {
-        level = 'Intermediate';
-        recommendation = trainingPrograms[focusArea]?.name || trainingPrograms.basic.name;
-      }
-
-      results.innerHTML = `
-        <div class="card">
-          <div class="card-body">
-            <h3>Assessment Results</h3>
-            <p><strong>Your Level:</strong> ${level}</p>
-            <p><strong>Score:</strong> ${totalScore}/20</p>
-            <p><strong>Recommended Program:</strong> ${recommendation}</p>
-            <p>Based on your responses, we recommend starting with the ${recommendation} program.</p>
-            <button class="btn btn-primary" onclick="showSection('programs')">View Programs</button>
-          </div>
-        </div>
-      `;
-
-      addActivity('Assessment', 'Completed initial assessment');
-      checkAchievements();
-      updateStats();
-      saveData('appState', appState);
-    }
-
-    // Program functions
-    function renderPrograms() {
-      const grid = document.getElementById('programGrid');
-      grid.innerHTML = Object.entries(trainingPrograms).map(([key, program]) => `
-        <div class="program-card ${appState.currentProgram === key ? 'selected' : ''}" 
-             data-program="${key}">
-          <div class="program-title">${program.name}</div>
-          <div class="program-duration">${program.duration}</div>
-          <div class="program-desc">${program.description}</div>
-        </div>
-      `).join('');
-
-      // Add click handlers
-      grid.addEventListener('click', (e) => {
-        const card = e.target.closest('.program-card');
-        if (card) {
-          // Remove selected class from all cards
-          grid.querySelectorAll('.program-card').forEach(c => c.classList.remove('selected'));
-          // Add selected class to clicked card
-          card.classList.add('selected');
-          
-          // Show select button
-          document.getElementById('selectProgram').style.display = 'block';
+          card.classList.remove('unlocked');
         }
       });
     }
 
-    function selectProgram() {
-      const selectedCard = document.querySelector('.program-card.selected');
-      if (selectedCard) {
-        const programKey = selectedCard.dataset.program;
-        appState.currentProgram = programKey;
-        
-        // Setup week selector
-        const program = trainingPrograms[programKey];
-        const weekSelect = document.getElementById('weekSelect');
-        weekSelect.innerHTML = Object.keys(program.weeks).map(week => 
-          `<option value="${week}">Week ${week}: ${program.weeks[week].title.split(': ')[1]}</option>`
-        ).join('');
-        
-        // Show current program card
-        document.getElementById('currentProgramCard').style.display = 'block';
-        document.getElementById('currentProgramTitle').textContent = program.name;
-        
-        // Display first week
-        displayWeeklyTasks(1);
-        
-        addActivity('Program', `Started ${program.name}`);
-        saveData('appState', appState);
-        showMessage('programGrid', 'Program selected successfully!');
-      }
-    }
-
-    function displayWeeklyTasks(week) {
-      if (!appState.currentProgram) return;
-      
-      const program = trainingPrograms[appState.currentProgram];
-      const weekData = program.weeks[week];
-      
-      if (!weekData) return;
-      
-      const container = document.getElementById('weeklyTasks');
-      const title = document.getElementById('weekTitle');
-      
-      title.textContent = weekData.title;
-      container.innerHTML = weekData.tasks.map(task => `
-        <li class="task-item">
-          <div class="task-checkbox ${appState.completedTasks.has(task.id) ? 'completed' : ''}" 
-               data-task-id="${task.id}" data-points="${task.points}"></div>
-          <div class="task-content">
-            <div class="task-title">${task.title}</div>
-            <div class="task-desc">${task.desc}</div>
-            <div class="task-category">${task.category}</div>
-            <div class="task-points">+${task.points} XP</div>
-          </div>
-        </li>
-      `).join('');
-
-      // Add click handlers for task completion
-      container.addEventListener('click', (e) => {
-        if (e.target.classList.contains('task-checkbox')) {
-          const taskId = parseInt(e.target.dataset.taskId);
-          const points = parseInt(e.target.dataset.points);
-          toggleTask(taskId, points);
-        }
-      });
-    }
-
-    function toggleTask(taskId, points) {
-      if (appState.completedTasks.has(taskId)) {
-        appState.completedTasks.delete(taskId);
-        appState.xp = Math.max(0, appState.xp - points);
-      } else {
-        appState.completedTasks.add(taskId);
-        appState.xp += points;
-        showXPNotification(points);
-        addActivity('Task', `Completed task (${points} XP)`);
-      }
-
-      // Check for level up
-      for (let i = levels.length - 1; i >= 0; i--) {
-        if (appState.xp >= levels[i].xp) {
-          if (appState.level < i) {
-            addActivity('Level Up', `Reached ${levels[i].name} level!`);
-          }
-          appState.level = i;
-          break;
-        }
-      }
-
-      checkAchievements();
-      updateStats();
-      saveData('appState', appState);
-      displayWeeklyTasks(appState.currentWeek);
-    }
-
-    // Task submission functions
-    function submitTask() {
-      const taskInput = document.getElementById('taskInput');
-      const categorySelect = document.getElementById('taskCategory');
-      const task = taskInput.value.trim();
-      const category = categorySelect.value;
-      
-      if (!task) {
-        showMessage('taskMessage', 'Please describe your accomplishment.', 'error');
+    function startLock() {
+      if (appState.daysLocked.isLocked) {
+        showNotification({
+          title: 'Already Locked',
+          message: 'You are already in a lock session!',
+          type: 'warning',
+          duration: 3000
+        });
         return;
       }
 
-      const tasks = loadData('submittedTasks', []);
-      const newTask = {
-        task,
-        category,
-        xp: appState.xp,
-        level: levels[appState.level].name,
-        date: new Date().toLocaleString()
-      };
+      appState.daysLocked.isLocked = true;
+      appState.daysLocked.startDate = new Date().toISOString();
+      appState.daysLocked.endDate = null;
       
-      tasks.push(newTask);
-      saveData('submittedTasks', tasks);
+      document.getElementById('startLockBtn').style.display = 'none';
+      document.getElementById('endLockBtn').style.display = 'inline-flex';
       
-      appState.xp += 25;
-      appState.tasksSubmitted++;
-      showXPNotification(25);
+      // Update status bar
+      document.querySelector('#chastityStatus .status-value').innerHTML = 'On <span class="status-indicator active"></span>';
       
-      // Level up check
-      for (let i = levels.length - 1; i >= 0; i--) {
-        if (appState.xp >= levels[i].xp) {
-          appState.level = i;
-          break;
-        }
-      }
+      showNotification({
+        title: 'Lock Started!',
+        message: 'Your chastity lock session has begun. Good luck!',
+        type: 'success',
+        duration: 5000
+      });
       
-      addActivity('Task Submission', `Submitted ${category} task`);
-      checkAchievements();
-      updateStats();
-      saveData('appState', appState);
-      renderTaskLog();
-      
-      taskInput.value = '';
-      showMessage('taskMessage', `Task submitted successfully! +25 XP`);
+      updateDaysLockedTab();
+      saveAppState();
     }
 
-    function renderTaskLog() {
-      const tasks = loadData('submittedTasks', []);
-      const log = document.getElementById('taskLog');
-      
-      if (tasks.length === 0) {
-        log.textContent = 'No tasks submitted yet...';
+    function endLock() {
+      if (!appState.daysLocked.isLocked) {
+        showNotification({
+          title: 'Not Locked',
+          message: 'You are not currently in a lock session!',
+          type: 'warning',
+          duration: 3000
+        });
         return;
       }
 
-      log.textContent = tasks.slice(-10).reverse().map(t => 
-        `[${t.category}] ${t.task}\n🏆 ${t.level} - ${t.xp} XP\n📅 ${t.date}\n---`
-      ).join('\n\n');
+      appState.daysLocked.isLocked = false;
+      appState.daysLocked.endDate = new Date().toISOString();
+      
+      // Update longest streak if needed
+      if (appState.daysLocked.totalDaysLocked > appState.daysLocked.longestStreak) {
+        appState.daysLocked.longestStreak = appState.daysLocked.totalDaysLocked;
+      }
+      
+      document.getElementById('startLockBtn').style.display = 'inline-flex';
+      document.getElementById('endLockBtn').style.display = 'none';
+      
+      // Update status bar
+      document.querySelector('#chastityStatus .status-value').innerHTML = 'Off <span class="status-indicator inactive"></span>';
+      
+      showNotification({
+        title: 'Lock Ended!',
+        message: `Congratulations! You were locked for ${appState.daysLocked.totalDaysLocked} days!`,
+        type: 'success',
+        duration: 5000
+      });
+      
+      updateDaysLockedTab();
+      saveAppState();
     }
 
-    // Audio/Hypno functions
-    function initializeAudio() {
-      const uploadArea = document.getElementById('audioUpload');
-      const fileInput = document.getElementById('audioFileInput');
-      const playBtn = document.getElementById('playBtn');
-      const audioProgress = document.getElementById('audioProgress');
-      const progressFill = document.getElementById('audioProgressFill');
-      const timeDisplay = document.getElementById('audioTime');
-      
-      let currentAudio = null;
-
-      // File upload handling
-      uploadArea.addEventListener('click', () => fileInput.click());
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.style.borderColor = 'var(--primary)';
-      });
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.style.borderColor = 'var(--border)';
-      });
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.style.borderColor = 'var(--border)';
-        handleFiles(e.dataTransfer.files);
-      });
-
-      fileInput.addEventListener('change', (e) => {
-        handleFiles(e.target.files);
-      });
-
-      function handleFiles(files) {
-        Array.from(files).forEach(file => {
-          if (file.type.startsWith('audio/')) {
-            const url = URL.createObjectURL(file);
-            appState.audioFiles.push({
-              name: file.name,
-              url: url,
-              duration: 0
-            });
-            
-            // Get duration
-            const audio = new Audio(url);
-            audio.addEventListener('loadedmetadata', () => {
-              const fileIndex = appState.audioFiles.findIndex(f => f.url === url);
-              if (fileIndex !== -1) {
-                appState.audioFiles[fileIndex].duration = audio.duration;
-                renderPlaylist();
-                saveData('appState', appState);
-              }
-            });
-          }
-        });
-        
-        if (appState.audioFiles.length > 0) {
-          unlockAchievement('hypno_explorer');
-          document.getElementById('audioPlayer').style.display = 'block';
-          renderPlaylist();
-        }
-      }
-
-      function renderPlaylist() {
-        const playlist = document.getElementById('playlist');
-        if (appState.audioFiles.length === 0) {
-          playlist.innerHTML = '<p>No files uploaded yet...</p>';
-          return;
-        }
-
-        playlist.innerHTML = appState.audioFiles.map((file, index) => `
-          <div class="playlist-item ${appState.currentTrack === index ? 'active' : ''}" 
-               data-index="${index}">
-            <strong>${file.name}</strong>
-            <span style="float: right; color: var(--text-light);">
-              ${formatTime(file.duration)}
-            </span>
-          </div>
-        `).join('');
-
-        // Add click handlers
-        playlist.addEventListener('click', (e) => {
-          const item = e.target.closest('.playlist-item');
-          if (item) {
-            const index = parseInt(item.dataset.index);
-            selectTrack(index);
-          }
-        });
-      }
-
-      function selectTrack(index) {
-        appState.currentTrack = index;
-        const file = appState.audioFiles[index];
-        
-        if (currentAudio) {
-          currentAudio.pause();
-        }
-        
-        currentAudio = new Audio(file.url);
-        document.getElementById('currentTrack').textContent = file.name;
-        
-        currentAudio.addEventListener('timeupdate', () => {
-          const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
-          progressFill.style.width = progress + '%';
-          timeDisplay.textContent = formatTime(currentAudio.currentTime);
-        });
-
-        currentAudio.addEventListener('ended', () => {
-          appState.isPlaying = false;
-          playBtn.textContent = '▶';
-          addActivity('Hypno', `Completed session: ${file.name}`);
-        });
-        
-        renderPlaylist();
-      }
-
-      function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
-      }
-
-      // Play/pause functionality
-      playBtn.addEventListener('click', () => {
-        if (!currentAudio) {
-          if (appState.audioFiles.length > 0) {
-            selectTrack(0);
-          } else {
-            return;
-          }
-        }
-
-        if (appState.isPlaying) {
-          currentAudio.pause();
-          playBtn.textContent = '▶';
-          appState.isPlaying = false;
-        } else {
-          currentAudio.play();
-          playBtn.textContent = '⏸';
-          appState.isPlaying = true;
-        }
-      });
-
-      // Session timer
-      document.getElementById('startSession').addEventListener('click', () => {
-        const minutes = parseInt(document.getElementById('sessionTimer').value);
-        if (minutes > 0) {
-          startTimedSession(minutes);
-        }
-      });
-
-      function startTimedSession(minutes) {
-        const sessionTime = minutes * 60 * 1000;
-        showMessage('hypno', `Started ${minutes} minute session`);
-        
-        setTimeout(() => {
-          if (currentAudio && appState.isPlaying) {
-            currentAudio.pause();
-            playBtn.textContent = '▶';
-            appState.isPlaying = false;
-          }
-          
-          appState.xp += minutes * 2; // 2 XP per minute
-          showXPNotification(minutes * 2);
-          addActivity('Hypno Session', `Completed ${minutes} minute session`);
-          updateStats();
-          saveData('appState', appState);
-          
-          showMessage('hypno', `Session completed! +${minutes * 2} XP`);
-        }, sessionTime);
-      }
-
-      // Keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
-          e.preventDefault();
-          playBtn.click();
-        }
-      });
+    // ===== PLACEHOLDER FUNCTIONS =====
+    function updateTasks() {
+      // Placeholder for tasks functionality
+      console.log('Tasks updated');
     }
 
-    // Community functions
-    function postCommunityMessage() {
-      const input = document.getElementById('communityInput');
-      const message = input.value.trim();
-      
-      if (!message) {
-        showMessage('communityMessage', 'Please write a message.', 'error');
-        return;
-      }
-
-      const messages = loadData('communityMessages', []);
-      messages.push({
-        message,
-        date: new Date().toLocaleString()
-      });
-      
-      saveData('communityMessages', messages);
-      renderCommunityLog();
-      input.value = '';
-      
-      if (messages.length === 1) {
-        unlockAchievement('community_member');
-      }
-      
-      addActivity('Community', 'Posted message');
-      showMessage('communityMessage', 'Message posted successfully!');
+    function updateAchievements() {
+      // Placeholder for achievements functionality
+      console.log('Achievements updated');
     }
 
-    function renderCommunityLog() {
-      const messages = loadData('communityMessages', []);
-      const log = document.getElementById('communityLog');
-      
-      if (messages.length === 0) {
-        log.textContent = 'No messages yet...';
-        return;
+    function updateProfile() {
+      // Placeholder for profile functionality
+      console.log('Profile updated');
+    }
+
+    // ===== SAVE/LOAD STATE =====
+    function saveAppState() {
+      saveData('feminizer_app_state', appState);
+    }
+
+    function loadAppState() {
+      const savedState = loadData('feminizer_app_state', null);
+      if (savedState) {
+        // Merge saved state with default state
+        appState = { ...appState, ...savedState };
+        
+        // Convert Set objects back from arrays
+        if (savedState.tasks && savedState.tasks.completed) {
+          appState.tasks.completed = new Set(savedState.tasks.completed);
+        }
+        if (savedState.daysLocked && savedState.daysLocked.lockedDays) {
+          appState.daysLocked.lockedDays = new Set(savedState.daysLocked.lockedDays);
+        }
+        if (savedState.achievements && savedState.achievements.unlocked) {
+          appState.achievements.unlocked = new Set(savedState.achievements.unlocked);
+        }
       }
-
-      log.textContent = messages.slice(-10).reverse().map(m => 
-        `💬 ${m.message}\n📅 ${m.date}\n---`
-      ).join('\n\n');
     }
 
-    // Auto-save functionality
-    function startAutoSave() {
-      setInterval(() => {
-        saveData('appState', appState);
-      }, 30000); // Save every 30 seconds
-    }
-
-    // Initialization
-    function init() {
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', function() {
       // Load saved state
-      const savedState = loadData('appState', {});
-      appState = { ...appState, ...savedState };
+      loadAppState();
       
-      // Convert arrays back to Sets
-      appState.completedTasks = new Set(Array.isArray(appState.completedTasks) ? appState.completedTasks : []);
-appState.unlockedAchievements = new Set(Array.isArray(appState.unlockedAchievements) ? appState.unlockedAchievements : []);
+      // Set initial active tab based on URL hash or default to dashboard
+      const initialSection = window.location.hash ? window.location.hash.substring(1) : 'dashboard';
+      showSection(initialSection);
       
-      // Update achievements array
-      achievements.forEach(achievement => {
-        achievement.unlocked = appState.unlockedAchievements.has(achievement.id);
-      });
-      
-      // Update UI
-      updateStats();
-      renderAssessment();
-      renderPrograms();
-      renderAchievements();
-      renderTaskLog();
-      renderCommunityLog();
-      initializeAudio();
-      
-      // Show current program if selected
-      if (appState.currentProgram) {
-        const program = trainingPrograms[appState.currentProgram];
-        const weekSelect = document.getElementById('weekSelect');
-        weekSelect.innerHTML = Object.keys(program.weeks).map(week => 
-          `<option value="${week}">Week ${week}: ${program.weeks[week].title.split(': ')[1]}</option>`
-        ).join('');
-        weekSelect.value = appState.currentWeek;
-        
-        document.getElementById('currentProgramCard').style.display = 'block';
-        document.getElementById('currentProgramTitle').textContent = program.name;
-        displayWeeklyTasks(appState.currentWeek);
-      }
-
-      // Event listeners
+      // Add click event listeners to all tabs
       document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.addEventListener('click', (e) => {
+        tab.addEventListener('click', function(e) {
           e.preventDefault();
-          showSection(tab.dataset.section);
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
         });
       });
-
-      document.getElementById('weekSelect').addEventListener('change', (e) => {
-        appState.currentWeek = parseInt(e.target.value);
-        displayWeeklyTasks(appState.currentWeek);
-        saveData('appState', appState);
-      });
-
-      document.getElementById('submitTaskBtn').addEventListener('click', submitTask);
-      document.getElementById('postCommunityBtn').addEventListener('click', postCommunityMessage);
-      document.getElementById('submitAssessment').addEventListener('click', submitAssessment);
-      document.getElementById('selectProgram').addEventListener('click', selectProgram);
       
-      // Start auto-save
-      startAutoSave();
+      // Add event listeners for calendar navigation
+      document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1));
+      document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1));
       
-      console.log('Feminizer app initialized successfully!');
-    }
+      // Add event listeners for lock controls
+      document.getElementById('startLockBtn').addEventListener('click', startLock);
+      document.getElementById('endLockBtn').addEventListener('click', endLock);
+      
+      // Update button visibility based on current lock state
+      if (appState.daysLocked.isLocked) {
+        document.getElementById('startLockBtn').style.display = 'none';
+        document.getElementById('endLockBtn').style.display = 'inline-flex';
+        document.querySelector('#chastityStatus .status-value').innerHTML = 'On <span class="status-indicator active"></span>';
+      }
+      
+      // Update the dashboard on initial load
+      updateDashboard();
+      
+      // Initialize days locked tab if it's the active section
+      if (initialSection === 'dayslocked') {
+        updateDaysLockedTab();
+      }
+    });
 
-    // Start the application
-    document.addEventListener('DOMContentLoaded', init);
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+      const sectionId = window.location.hash ? window.location.hash.substring(1) : 'dashboard';
+      showSection(sectionId);
+    });
+
+    // Auto-save state periodically
+    setInterval(saveAppState, 30000); // Save every 30 seconds
   </script>
 </body>
 </html>
